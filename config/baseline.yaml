@@ -1,0 +1,63 @@
+# @package _group_
+
+hydra:
+  run:
+    dir: .  
+
+common:
+  reset_logging: true
+  log_format: simple
+  log_interval: 10
+  tensorboard_logdir: ???
+  fp16: true
+  seed: 73
+
+distributed_training:
+  distributed_world_size: 1
+
+criterion:
+  _name: label_smoothed_cross_entropy
+  label_smoothing: 0.1
+
+optimization:
+  max_epoch: 300
+  # max_update: 100000
+  clip_norm: 10.0
+  update_freq: [1] # gradient accumulation, set higher to simulate large batch size
+  lr: [5e-4]
+
+optimizer: 
+  _name: adam
+  adam_betas: '(0.9, 0.98)'
+  adam_eps: 1e-9
+  weight_decay: 0.0001
+
+lr_scheduler:
+  _name: inverse_sqrt
+  warmup_updates: 4000
+
+dataset:
+  num_workers: 8
+  skip_invalid_size_inputs_valid_test: true
+  max_tokens: 8000
+  max_tokens_valid: 2000 # print more examples
+  validate_interval: 1
+
+checkpoint:
+  save_dir: ???
+  save_interval: ${dataset.validate_interval}
+  save_interval_updates: -1
+  keep_interval_updates: -1
+  keep_last_epochs: 10
+  keep_best_checkpoints: 1
+  no_save: false
+  no_epoch_checkpoints: false
+  best_checkpoint_metric: bleu
+  maximize_best_checkpoint_metric: true
+  patience: 50
+
+defaults:
+  - task: translation
+  - model: my_transformer
+  - bpe: sentencepiece
+  - tokenizer: space

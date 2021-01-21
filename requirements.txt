@@ -1,0 +1,9 @@
+editdistance==0.5.3
+jieba-fast==0.53
+sacrebleu
+sacremoses
+sentencepiece
+torch>=1.5.0
+tqdm
+tensorboard
+tensorboardX

@@ -1,0 +1,9 @@
+# @package _group_
+
+_name: translation
+eval_bleu: True
+eval_bleu_print_samples: True
+eval_bleu_detok: space
+eval_tokenized_bleu: False
+eval_bleu_remove_bpe: sentencepiece
+eval_bleu_args: '{"beam": 5, "max_len_a": 1.2, "max_len_b": 10}'

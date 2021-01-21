@@ -1,0 +1,25 @@
+# @package _group_
+
+_name: my_transformer
+
+encoder_embed_dim: 256
+encoder_ffn_embed_dim: 256
+encoder_layers: 4
+encoder_attention_heads: 2
+encoder_normalize_before: true  
+encoder_learned_pos: false
+
+decoder_embed_dim: ${model.encoder_embed_dim}
+decoder_ffn_embed_dim: ${model.encoder_ffn_embed_dim}
+decoder_layers: 4
+decoder_attention_heads: 2
+decoder_normalize_before: true
+decoder_learned_pos: false
+
+share_all_embeddings: true
+share_decoder_input_output_embed: true
+
+dropout: 0.3
+attention_dropout: 0.0
+activation_dropout: 0.0
+activation_fn: "relu"
