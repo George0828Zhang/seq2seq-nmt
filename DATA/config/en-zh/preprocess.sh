@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 src=$SRCLANG
 tgt=$TGTLANG
-distill=$DISTILL
 raw=$RAW
 prep=$CACHE/prep
 ready=$CACHE/ready
@@ -62,14 +61,11 @@ for l in $src $tgt; do
     fi
     echo ""
 done
-perl $CLEAN -ratio 9 $prep/train.dirty $src $tgt $prep/train 1 250 # 9 is default
+perl $CLEAN -ratio 9 $prep/train.dirty $src $tgt $prep/train 1 1000
 
 echo "pre-processing valid data..."
 for l in $src $tgt; do
     echo -n "" > $prep/valid.$l # reset to blank file
-    # for o in `ls $raw/$lang/IWSLT17.TED*.$l.xml`; do
-        # fname=${o##*/}
-        # f=$raw/${fname%.*}
     for fname in $VALID_SETS; do
         o=$raw/$lang/$fname.$l.xml
         f=$raw/$fname.$l
@@ -79,8 +75,6 @@ for l in $src $tgt; do
             sed -e 's/<seg id="[0-9]*">\s*//g' | \
             sed -e 's/\s*<\/seg>\s*//g' | \
             sed -e "s/\’/\'/g" > $f
-        # perl $TOKENIZER -threads 8 -l $l | \
-        # perl $LC > $f
 
         if [[ $l == "zh" ]]; then
             cat $f | \

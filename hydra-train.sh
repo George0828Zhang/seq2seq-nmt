@@ -17,6 +17,5 @@ fairseq-hydra-train \
     common.user_dir='./extensions/' \
     common.tensorboard_logdir=${logdir} \
     checkpoint.save_dir=${savedir} \
-    hydra.job.name=${NAME} \
     --config-dir './config/' \
     --config-name 'baseline' # use baseline.yaml

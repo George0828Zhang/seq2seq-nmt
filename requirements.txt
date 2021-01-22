@@ -1,9 +1,9 @@
-editdistance==0.5.3
-jieba-fast==0.53
+torch>=1.5.0
+editdistance
+jieba-fast
 sacrebleu
 sacremoses
 sentencepiece
-torch>=1.5.0
 tqdm
 tensorboard
 tensorboardX
