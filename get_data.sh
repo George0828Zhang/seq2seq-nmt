@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # config
-DATA=$(realpath ./DATA)
+DATA=./DATA
+DATA=$(realpath ${DATA})
 export PREFIX=${DATA}/rawdata
 export DATABIN=${DATA}/data-bin
 export CONFIG=${DATA}/config/en-zh
