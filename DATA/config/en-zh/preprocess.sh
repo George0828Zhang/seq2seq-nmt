@@ -66,7 +66,7 @@ perl $CLEAN -ratio 9 $prep/train.dirty $src $tgt $prep/train 1 1000
 echo "pre-processing valid data..."
 for l in $src $tgt; do
     echo -n "" > $prep/valid.$l # reset to blank file
-    for fname in $VALID_SETS; do
+    for fname in ${VALID_SETS[@]}; do
         o=$raw/$lang/$fname.$l.xml
         f=$raw/$fname.$l
 
